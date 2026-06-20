@@ -42,11 +42,13 @@ export default function ContactPage() {
             name: "Luxury Villa",
             url: "https://luxuryvilla.com",
             image: "https://luxuryvilla.com/images/villa-vue-ensemble.jpg",
-            telephone: "+212600000000",
-            email: "contact@luxuryvilla.com",
+            telephone: "+212666588286",
+            email: "Luxuryvillakech@gmail.com",
             address: {
               "@type": "PostalAddress",
+              streetAddress: "Douar Ait Lahmad VILLA, Azib Oulad Ladem",
               addressLocality: "Marrakech",
+              postalCode: "40000",
               addressRegion: "Marrakech-Safi",
               addressCountry: "MA",
             },
@@ -57,8 +59,8 @@ export default function ContactPage() {
             },
             contactPoint: {
               "@type": "ContactPoint",
-              telephone: "+212600000000",
-              email: "contact@luxuryvilla.com",
+              telephone: "+212666588286",
+              email: "Luxuryvillakech@gmail.com",
               contactType: "reservations",
               availableLanguage: ["French", "English", "Arabic"],
             },
@@ -183,7 +185,7 @@ export default function ContactPage() {
                     Adresse
                   </h3>
                   <p className="text-sm font-light text-charcoal/80">
-                    Marrakech, Maroc
+                    Douar Ait Lahmad VILLA, Azib Oulad Ladem, 40000, Maroc
                   </p>
                 </div>
                 <div>
@@ -191,10 +193,10 @@ export default function ContactPage() {
                     Telephone
                   </h3>
                   <a
-                    href="tel:+212600000000"
+                    href="tel:+212666588286"
                     className="text-sm font-light text-charcoal/80 hover:text-charcoal transition-colors"
                   >
-                    +212 6 00 00 00 00
+                    +212 6 66 58 82 86
                   </a>
                 </div>
                 <div>
@@ -202,10 +204,10 @@ export default function ContactPage() {
                     Email
                   </h3>
                   <a
-                    href="mailto:contact@luxuryvilla.com"
+                    href="mailto:Luxuryvillakech@gmail.com"
                     className="text-sm font-light text-charcoal/80 hover:text-charcoal transition-colors"
                   >
-                    contact@luxuryvilla.com
+                    Luxuryvillakech@gmail.com
                   </a>
                 </div>
               </div>
@@ -213,7 +215,7 @@ export default function ContactPage() {
               {/* Google Maps placeholder */}
               <div className="mt-10 bg-sand-100 border border-sand-200 aspect-[4/3] flex items-center justify-center">
                 <p className="text-sm font-light text-charcoal/40">
-                  Google Maps - Marrakech, Maroc
+                  Google Maps - Douar Ait Lahmad, Azib Oulad Ladem, Maroc
                 </p>
               </div>
             </div>

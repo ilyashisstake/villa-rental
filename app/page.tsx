@@ -6,28 +6,42 @@ import { supabase } from "@/lib/supabase";
 const highlights = [
   {
     icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1",
-    title: "Villa Traditionnelle",
+    title: "6 Chambres spacieuses",
     description:
-      "Architecture marocaine authentique avec arches, murs ocre et finitions artisanales.",
+      "2 suites parentales, 2 grandes chambres et 2 chambres individuelles pour accueillir toute la famille.",
   },
   {
     icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
     title: "Piscine Privee",
     description:
-      "Grande piscine entouree de transats, baldaquins et jardins paysagers.",
+      "Grande piscine entouree de transats, baldaquins et jardins paysagers sur un domaine de 5 000 m².",
   },
   {
-    icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
-    title: "Confort Premium",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "Securite & Service",
     description:
-      "Terrasse en zellige, salon exterieur en fer forge, four a bois traditionnel.",
+      "Securite sur place 24h/24 et service de femme de menage pour un sejour en toute serenite.",
   },
   {
     icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
-    title: "Emplacement Ideal",
+    title: "Marrakech",
     description:
       "Situee a Marrakech avec un grand domaine verdoyant et parking prive.",
   },
+];
+
+const equipements = [
+  { icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1", label: "2 suites parentales" },
+  { icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1", label: "2 grandes chambres" },
+  { icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1", label: "2 chambres pour 1 personne" },
+  { icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z", label: "6 salles de bain avec douche" },
+  { icon: "M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5", label: "5 000 m² de terrain" },
+  { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", label: "Securite sur place" },
+  { icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z", label: "Service de femme de menage" },
+  { icon: "M3 3h18v4H3V3zm0 6h18v12H3V9zm3 3h4v4H6v-4z", label: "Grande cuisine equipee" },
+  { icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm4 0h-2v-2h2v2zm-6-4V8h6v4H9z", label: "Four" },
+  { icon: "M4 4h16v2H4V4zm2 4h12v2H6V8zm-2 4h16v8H4v-8zm3 2v4h2v-4H7zm4 0v4h2v-4h-2zm4 0v4h2v-4h-2z", label: "Barbecue" },
+  { icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z", label: "Petit-dejeuner inclus" },
 ];
 
 const reviews = [
@@ -66,7 +80,7 @@ export default async function Home() {
     .order("ordre", { ascending: true })
     .limit(6);
 
-  const equipements = villa?.equipements ?? [];
+  const equipementsDb = villa?.equipements ?? [];
   const galleryImages = (photos ?? []).map((p) => ({
     src: p.url,
     alt: p.alt_text ?? "",
@@ -89,11 +103,13 @@ export default async function Home() {
               "https://luxuryvilla.com/images/villa-piscine-facade.jpg",
               "https://luxuryvilla.com/images/piscine-baldaquin.jpg",
             ],
-            telephone: "+212600000000",
-            email: "contact@luxuryvilla.com",
+            telephone: "+212666588286",
+            email: "Luxuryvillakech@gmail.com",
             address: {
               "@type": "PostalAddress",
+              streetAddress: "Douar Ait Lahmad VILLA, Azib Oulad Ladem",
               addressLocality: "Marrakech",
+              postalCode: "40000",
               addressRegion: "Marrakech-Safi",
               addressCountry: "MA",
             },
@@ -106,7 +122,8 @@ export default async function Home() {
               "@type": "Rating",
               ratingValue: "5",
             },
-            numberOfRooms: 1,
+            numberOfRooms: 6,
+            numberOfBathroomsTotal: 6,
             petsAllowed: false,
             checkinTime: "15:00",
             checkoutTime: "11:00",
@@ -143,15 +160,21 @@ export default async function Home() {
                   priceCurrency: "MAD",
                   priceValidUntil: "2027-12-31",
                   availability: "https://schema.org/InStock",
-                  url: "https://luxuryvilla.com/reservation",
-                  validFrom: new Date().toISOString().split("T")[0],
+                  url: "https://www.booking.com/Share-XTYYE6",
                 }
               : undefined,
-            amenityFeature: equipements.map((a) => ({
-              "@type": "LocationFeatureSpecification",
-              name: a,
-              value: true,
-            })),
+            amenityFeature: [
+              ...equipements.map((e) => ({
+                "@type": "LocationFeatureSpecification",
+                name: e.label,
+                value: true,
+              })),
+              ...equipementsDb.map((a) => ({
+                "@type": "LocationFeatureSpecification",
+                name: a,
+                value: true,
+              })),
+            ],
           }),
         }}
       />
@@ -177,7 +200,7 @@ export default async function Home() {
           </h1>
           <p className="text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-4 animate-fade-up stagger-2 text-warm-white/90">
             Une villa d&apos;exception au coeur de Marrakech. Piscine privee,
-            jardins luxuriants et art de vivre marocain.
+            jardins luxuriants, petit-dejeuner inclus et art de vivre marocain.
           </p>
           {villa && (
             <p className="text-sm font-light mb-10 animate-fade-up stagger-2 text-gold-light">
@@ -337,12 +360,24 @@ export default async function Home() {
                   Equipements
                 </h2>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {equipements.map((item) => (
-                    <div key={item} className="flex items-center gap-3 py-2">
-                      <div className="w-1.5 h-1.5 bg-gold rounded-full shrink-0" />
+                    <div key={item.label} className="flex items-center gap-3 py-2">
+                      <svg
+                        className="w-5 h-5 text-gold shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={1.5}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d={item.icon}
+                        />
+                      </svg>
                       <span className="text-sm font-light text-charcoal/70">
-                        {item}
+                        {item.label}
                       </span>
                     </div>
                   ))}
@@ -406,7 +441,7 @@ export default async function Home() {
       <section className="relative py-32 md:py-40 overflow-hidden">
         <Image
           src="/images/villa-jardin-piscine.jpg"
-          alt="Villa Safa avec piscine et jardin"
+          alt="Luxury Villa avec piscine et jardin"
           fill
           className="object-cover"
           sizes="100vw"
@@ -419,21 +454,31 @@ export default async function Home() {
           </h2>
           <p className="text-base font-light text-warm-white/80 max-w-xl mx-auto mb-10">
             Offrez-vous une experience inoubliable dans notre villa de luxe a
-            Marrakech. Disponible pour des sejours a partir de 2 nuits.
+            Marrakech avec petit-dejeuner inclus.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/reservation"
-              className="bg-gold text-charcoal px-10 py-4 text-sm font-medium tracking-wide hover:bg-gold-light transition-all duration-300"
+            <a
+              href="https://www.booking.com/Share-XTYYE6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-[#003580] text-white px-10 py-4 text-sm font-medium tracking-wide hover:bg-[#00224f] transition-all duration-300"
             >
-              Verifier les disponibilites
-            </Link>
-            <Link
-              href="/contact"
-              className="border border-warm-white/60 text-warm-white px-10 py-4 text-sm font-light tracking-wide hover:bg-warm-white/10 transition-all duration-300"
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2 7h5v10H2V7zm7 0h5v4h3l-4 6H9V7zm10 0h3v10h-3V7z" />
+              </svg>
+              Reserver sur Booking.com
+            </a>
+            <a
+              href="https://wa.me/212666588286?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20Luxury%20Villa%20%C3%A0%20Marrakech."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-[#25D366] text-white px-10 py-4 text-sm font-medium tracking-wide hover:bg-[#1da851] transition-all duration-300"
             >
-              Nous contacter
-            </Link>
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Contacter sur WhatsApp
+            </a>
           </div>
         </RevealOnScroll>
       </section>

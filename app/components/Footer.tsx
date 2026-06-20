@@ -49,21 +49,21 @@ export function Footer() {
               Contact
             </h4>
             <ul className="space-y-3 text-sm font-light">
-              <li>Marrakech, Maroc</li>
+              <li>Douar Ait Lahmad VILLA, Azib Oulad Ladem, 40000, Maroc</li>
               <li>
                 <a
-                  href="tel:+212600000000"
+                  href="tel:+212666588286"
                   className="hover:text-warm-white transition-colors"
                 >
-                  +212 6 00 00 00 00
+                  +212 6 66 58 82 86
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:contact@luxuryvilla.com"
+                  href="mailto:Luxuryvillakech@gmail.com"
                   className="hover:text-warm-white transition-colors"
                 >
-                  contact@luxuryvilla.com
+                  Luxuryvillakech@gmail.com
                 </a>
               </li>
             </ul>
@@ -75,7 +75,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Luxury Villa. Tous droits reserves.
           </p>
           <p className="text-xs font-light text-warm-white/40">
-            Marrakech, Maroc
+            Maroc
           </p>
         </div>
       </div>

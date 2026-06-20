@@ -31,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/images/piscine-transats.jpg`,
         `${baseUrl}/images/terrasse-zellige.jpg`,
         `${baseUrl}/images/villa-jardin-piscine.jpg`,
+        `${baseUrl}/images/salon-salle-a-manger.jpg`,
+        `${baseUrl}/images/salon-tv.jpg`,
+        `${baseUrl}/images/cuisine-equipee.jpg`,
+        `${baseUrl}/images/cuisine-plan-de-travail.jpg`,
+        `${baseUrl}/images/salle-de-bain-douche.jpg`,
+        `${baseUrl}/images/salle-de-bain-vasque.jpg`,
+        `${baseUrl}/images/decoration-marocaine.jpg`,
       ],
     },
     {
