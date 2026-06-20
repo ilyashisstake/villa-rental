@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RevealOnScroll } from "./components/RevealOnScroll";
+import { supabase } from "@/lib/supabase";
 
 const highlights = [
   {
@@ -29,21 +30,6 @@ const highlights = [
   },
 ];
 
-const amenities = [
-  "Piscine privee",
-  "Jardins paysagers",
-  "Terrasse en zellige",
-  "Four a bois",
-  "Salon exterieur",
-  "Baldaquins",
-  "Parking prive",
-  "Wi-Fi haut debit",
-  "Climatisation",
-  "Cuisine equipee",
-  "Terrain de jeux",
-  "Personnel de maison",
-];
-
 const reviews = [
   {
     name: "Sophie L.",
@@ -65,59 +51,103 @@ const reviews = [
   },
 ];
 
-const galleryImages = [
-  {
-    src: "/images/villa-piscine-facade.jpg",
-    alt: "Vue sur la piscine et la facade de Safa Villa",
-  },
-  {
-    src: "/images/piscine-baldaquin.jpg",
-    alt: "Piscine avec baldaquin et jardins",
-  },
-  {
-    src: "/images/terrasse-zellige.jpg",
-    alt: "Terrasse en zellige avec salon en fer forge",
-  },
-  {
-    src: "/images/villa-panorama.jpg",
-    alt: "Vue panoramique de la villa et du domaine",
-  },
-  {
-    src: "/images/four-bois.jpg",
-    alt: "Four a bois traditionnel de la villa",
-  },
-  {
-    src: "/images/piscine-transats.jpg",
-    alt: "Piscine avec transats et parasols",
-  },
-];
+export default async function Home() {
+  // Charger la villa et ses photos depuis Supabase
+  const { data: villa } = await supabase
+    .from("villas")
+    .select("*")
+    .eq("nom", "Luxury Villa")
+    .single();
 
-export default function Home() {
+  const { data: photos } = await supabase
+    .from("photos")
+    .select("*")
+    .eq("villa_id", villa?.id ?? "")
+    .order("ordre", { ascending: true })
+    .limit(6);
+
+  const equipements = villa?.equipements ?? [];
+  const galleryImages = (photos ?? []).map((p) => ({
+    src: p.url,
+    alt: p.alt_text ?? "",
+  }));
+
   return (
     <>
-      {/* JSON-LD Structured Data */}
+      {/* JSON-LD Structured Data — LodgingBusiness + Offer + Reviews */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LodgingBusiness",
-            name: "Safa Villa",
-            description:
-              "Villa de luxe a Marrakech avec piscine privee, jardins paysagers et terrasse en zellige.",
-            url: "https://safavilla.com",
-            image: "https://safavilla.com/images/villa-vue-ensemble.jpg",
+            name: villa?.nom ?? "Luxury Villa",
+            description: villa?.description ?? "",
+            url: "https://luxuryvilla.com",
+            image: [
+              "https://luxuryvilla.com/images/villa-vue-ensemble.jpg",
+              "https://luxuryvilla.com/images/villa-piscine-facade.jpg",
+              "https://luxuryvilla.com/images/piscine-baldaquin.jpg",
+            ],
+            telephone: "+212600000000",
+            email: "contact@luxuryvilla.com",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Marrakech",
+              addressRegion: "Marrakech-Safi",
               addressCountry: "MA",
             },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 31.6295,
+              longitude: -7.9811,
+            },
+            starRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+            },
+            numberOfRooms: 1,
+            petsAllowed: false,
+            checkinTime: "15:00",
+            checkoutTime: "11:00",
+            priceRange: villa
+              ? `${villa.prix_nuit} MAD / nuit`
+              : undefined,
+            currenciesAccepted: "MAD",
+            paymentAccepted: "Cash, Credit Card",
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "5",
+              bestRating: "5",
               reviewCount: "3",
             },
-            amenityFeature: amenities.map((a) => ({
+            review: reviews.map((r) => ({
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: r.name,
+              },
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: r.rating,
+                bestRating: 5,
+              },
+              reviewBody: r.text,
+            })),
+            makesOffer: villa
+              ? {
+                  "@type": "Offer",
+                  name: `Sejour a ${villa.nom}`,
+                  description: `Location de villa de luxe a Marrakech, jusqu'a ${villa.capacite} personnes`,
+                  price: villa.prix_nuit,
+                  priceCurrency: "MAD",
+                  priceValidUntil: "2027-12-31",
+                  availability: "https://schema.org/InStock",
+                  url: "https://luxuryvilla.com/reservation",
+                  validFrom: new Date().toISOString().split("T")[0],
+                }
+              : undefined,
+            amenityFeature: equipements.map((a) => ({
               "@type": "LocationFeatureSpecification",
               name: a,
               value: true,
@@ -130,7 +160,7 @@ export default function Home() {
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
           src="/images/villa-vue-ensemble.jpg"
-          alt="Safa Villa - Villa de luxe avec piscine a Marrakech"
+          alt="Luxury Villa - Villa de luxe avec piscine a Marrakech"
           fill
           priority
           className="object-cover"
@@ -143,12 +173,18 @@ export default function Home() {
             Marrakech, Maroc
           </p>
           <h1 className="font-[family-name:var(--font-cormorant)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.1] mb-6 animate-fade-up stagger-1">
-            Safa Villa
+            {villa?.nom ?? "Luxury Villa"}
           </h1>
-          <p className="text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-up stagger-2 text-warm-white/90">
+          <p className="text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-4 animate-fade-up stagger-2 text-warm-white/90">
             Une villa d&apos;exception au coeur de Marrakech. Piscine privee,
             jardins luxuriants et art de vivre marocain.
           </p>
+          {villa && (
+            <p className="text-sm font-light mb-10 animate-fade-up stagger-2 text-gold-light">
+              A partir de {villa.prix_nuit} MAD / nuit &middot; Jusqu&apos;a{" "}
+              {villa.capacite} personnes
+            </p>
+          )}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up stagger-3">
             <Link
               href="/reservation"
@@ -260,7 +296,7 @@ export default function Home() {
         <section className="relative h-[50vh] min-h-[400px]">
           <Image
             src="/images/entree-villa.jpg"
-            alt="Entree majestueuse de Safa Villa avec palmiers"
+            alt="Entree majestueuse de Luxury Villa avec palmiers"
             fill
             className="object-cover"
             sizes="100vw"
@@ -302,7 +338,7 @@ export default function Home() {
                 </h2>
 
                 <div className="grid grid-cols-2 gap-4">
-                  {amenities.map((item) => (
+                  {equipements.map((item) => (
                     <div key={item} className="flex items-center gap-3 py-2">
                       <div className="w-1.5 h-1.5 bg-gold rounded-full shrink-0" />
                       <span className="text-sm font-light text-charcoal/70">

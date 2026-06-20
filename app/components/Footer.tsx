@@ -8,7 +8,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <h3 className="font-[family-name:var(--font-cormorant)] text-2xl font-semibold text-warm-white mb-2">
-              Safa Villa
+              Luxury Villa
             </h3>
             <p className="text-[10px] uppercase tracking-[0.3em] text-sand-400 mb-4">
               Marrakech
@@ -60,10 +60,10 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@safavilla.com"
+                  href="mailto:contact@luxuryvilla.com"
                   className="hover:text-warm-white transition-colors"
                 >
-                  contact@safavilla.com
+                  contact@luxuryvilla.com
                 </a>
               </li>
             </ul>
@@ -72,7 +72,7 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-warm-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs font-light">
-            &copy; {new Date().getFullYear()} Safa Villa. Tous droits reserves.
+            &copy; {new Date().getFullYear()} Luxury Villa. Tous droits reserves.
           </p>
           <p className="text-xs font-light text-warm-white/40">
             Marrakech, Maroc

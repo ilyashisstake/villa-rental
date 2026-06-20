@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/Header";
@@ -18,14 +18,20 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#1a1a1a",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://safavilla.com"),
+  metadataBase: new URL("https://luxuryvilla.com"),
   title: {
-    default: "Safa Villa | Villa de luxe avec piscine a Marrakech",
-    template: "%s | Safa Villa",
+    default: "Luxury Villa | Villa de luxe avec piscine a Marrakech",
+    template: "%s | Luxury Villa",
   },
   description:
-    "Decouvrez Safa Villa, une villa de luxe a Marrakech avec piscine privee, jardins paysagers, terrasse en zellige et four a bois. Location ideale pour vos vacances au Maroc.",
+    "Decouvrez Luxury Villa, une villa de luxe a Marrakech avec piscine privee, jardins paysagers, terrasse en zellige et four a bois. Location ideale pour vos vacances au Maroc.",
   keywords: [
     "villa marrakech",
     "location villa maroc",
@@ -33,14 +39,14 @@ export const metadata: Metadata = {
     "vacances marrakech",
     "villa avec piscine privee",
     "hebergement marrakech",
-    "safa villa",
+    "luxury villa",
   ],
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://safavilla.com",
-    siteName: "Safa Villa",
-    title: "Safa Villa | Villa de luxe avec piscine a Marrakech",
+    url: "https://luxuryvilla.com",
+    siteName: "Luxury Villa",
+    title: "Luxury Villa | Villa de luxe avec piscine a Marrakech",
     description:
       "Villa de luxe a Marrakech avec piscine privee, jardins paysagers et terrasse en zellige. Reservez votre sejour de reve.",
     images: [
@@ -48,13 +54,13 @@ export const metadata: Metadata = {
         url: "/images/villa-vue-ensemble.jpg",
         width: 1200,
         height: 630,
-        alt: "Safa Villa - Vue d'ensemble avec piscine et jardins",
+        alt: "Luxury Villa - Vue d'ensemble avec piscine et jardins",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Safa Villa | Villa de luxe a Marrakech",
+    title: "Luxury Villa | Villa de luxe a Marrakech",
     description:
       "Villa de luxe avec piscine privee a Marrakech. Reservez maintenant.",
     images: ["/images/villa-vue-ensemble.jpg"],
@@ -64,7 +70,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://safavilla.com",
+    canonical: "https://luxuryvilla.com",
   },
 };
 

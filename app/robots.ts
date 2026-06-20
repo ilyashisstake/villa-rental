@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://safavilla.com/sitemap.xml",
+    sitemap: "https://luxuryvilla.com/sitemap.xml",
   };
 }

@@ -19,7 +19,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none">
           <span className="font-[family-name:var(--font-cormorant)] text-2xl font-semibold tracking-wide text-charcoal">
-            Safa Villa
+            Luxury Villa
           </span>
           <span className="text-[10px] uppercase tracking-[0.3em] text-sand-500 font-light">
             Marrakech
